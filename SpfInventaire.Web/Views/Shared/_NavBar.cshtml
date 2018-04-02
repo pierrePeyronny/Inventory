@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNet.Identity
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand" style="cursor: default;">SP2F Inventaire</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            @if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventaires<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Inventaires", "IndexSaisieInventaire", "Inventaire")</li>
+                            @if (User.IsInRole(SpfInventaire.Core.BLL.Constantes.ROLE_CHEF_GARDE))
+                            {
+                                <li>@Html.ActionLink("Historique Inventaires", "Index", "ValidationInventaire")</li>
+                            }
+                            <li>@Html.ActionLink("Tickets Incidents", "Index", "TicketIncident")</li> 
+                            <li>@Html.ActionLink("Utilisation Matériel", "IndexSaisieStock", "SortieStock")</li>                           
+                        </ul>
+                    </li>                                                                                    
+                    
+                    @if (User.IsInRole(SpfInventaire.Core.BLL.Constantes.ROLE_ADMIN_GESTION_INVENTAIRE))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion Inventaires<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Inventaires", "Index", "Inventaire")</li>
+                                <li>@Html.ActionLink("Blocs Inventaires", "Index", "BlocInventaire")</li>
+                                <li>@Html.ActionLink("Matériels", "Index", "Materiel")</li>
+                                <li>@Html.ActionLink("Types de Matériel", "Index", "TypeMateriel")</li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("Création", "Index", "CreationInventaire")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole(SpfInventaire.Core.BLL.Constantes.ROLE_ADMIN_GESTION_INVENTAIRE))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion Stocks<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Stocks de Matériel", "Index", "StockMateriel")</li>
+                                <li>@Html.ActionLink("Listing des Stocks", "IndexListingStocks", "StockMateriel")</li>
+                                <li>@Html.ActionLink("Sorties de stocks", "Index", "SortieStock")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole(SpfInventaire.Core.BLL.Constantes.ROLE_ADMINISTRATEUR))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Evénements", "Index", "Evenement")</li>
+                                <li>@Html.ActionLink("Logs", "Index", "Log")</li>
+                                <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+                                <li>@Html.ActionLink("Utilisateurs", "Index", "User")</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            }
+                @Html.Partial("_LoginPartial")
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTicketIncidentViewModels
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.Inventaire, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.unTicket.Inventaire, Model.listInventaire, htmlAttributes: new { @id = "ddlInventaire", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unTicket.Inventaire, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.BlocInventaire, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.unTicket.BlocInventaire, Model.listBlocInventaire, htmlAttributes: new { @id = "ddlBlocInventaire", @class = "form-control" })
+        
+        @Html.ValidationMessageFor(model => model.unTicket.BlocInventaire, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.MaterielID, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.unTicket.MaterielID, Model.listMateriel, htmlAttributes: new { @id = "ddlMateriel", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unTicket.MaterielID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.Type, "Problème", htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EnumDropDownListFor(model => model.unTicket.Type, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unTicket.Type, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@if (Model.isAdminTicket)
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.unTicket.Statut, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EnumDropDownListFor(model => model.unTicket.Statut, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.unTicket.Statut, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}
+else
+{
+    @Html.HiddenFor(model => model.unTicket.Statut)
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.Message, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.unTicket.Message, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unTicket.Message, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTicket.NumeroFeb, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.unTicket.NumeroFeb, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unTicket.NumeroFeb, "", new { @class = "text-danger" })
+    </div>
+</div>

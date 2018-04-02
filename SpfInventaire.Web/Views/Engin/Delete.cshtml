@@ -1,0 +1,78 @@
+﻿@model SpfInventaire.Core.DAL.Models.Engin
+
+@{
+    ViewBag.Title = "Supprimer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Suppression</h2>
+
+<h3>Supprimer l'engin ?</h3>
+<div>
+    <h4>@Html.DisplayFor(model => model.Nom)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatriculation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Immatriculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeConf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeConf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeChauff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodeChauff)
+        </dd>
+
+        <dt>
+            <small>
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </small>
+        </dt>
+        <dd>
+            <small>
+                @Html.DisplayFor(model => model.DateCreation)
+            </small>
+        </dd>
+
+        <dt>
+            <small>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </small>
+        </dt>
+        <dd>
+            <small>
+                @Html.DisplayFor(model => model.DateModification)
+            </small>
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary" /> |
+            @Html.ActionLink("Liste des Engins", "Index")
+        </div>
+    }
+</div>

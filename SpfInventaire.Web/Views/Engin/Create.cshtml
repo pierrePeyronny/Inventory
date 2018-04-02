@@ -1,0 +1,15 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormEnginViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Création</h2>
+
+@Html.Partial("_FormEngin", Model)
+
+<div>
+    @Html.ActionLink("Liste des Engins", "Index")
+</div>

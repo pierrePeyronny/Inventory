@@ -1,0 +1,37 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormPleinEnginViewModel
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@if (Model.isEdit)
+{
+    @Html.HiddenFor(model => model.unPlein.ID)
+    @Html.HiddenFor(model => model.unPlein.DateCreation)
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unPlein.Kilometrage, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unPlein.Kilometrage, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unPlein.Kilometrage, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unPlein.Litrage, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.unPlein.Litrage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unPlein.Litrage, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unPlein.Prix, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.unPlein.Prix, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unPlein.Prix, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+@Html.HiddenFor(model => model.unPlein.EnginID)

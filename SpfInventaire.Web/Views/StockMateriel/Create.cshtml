@@ -1,0 +1,33 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model StockMaterielFormViewModel
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
+}
+
+<h2>Création</h2>
+
+@Html.Partial("_FormStock", Model)
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryUi")
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/bundles/TicketForm")
+
+    <script>
+        $(document).ready(function () {
+            TicketForm = new TicketForm();
+        });
+    </script>
+}

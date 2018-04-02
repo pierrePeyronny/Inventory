@@ -1,0 +1,34 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormEvenementViewModels
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unEvenement.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EnumDropDownListFor(model => model.unEvenement.Type, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unEvenement.Type, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unEvenement.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unEvenement.Description, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unEvenement.Description, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unEvenement.Duree, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unEvenement.Duree, new { htmlAttributes = new { @class = "form-control"} })
+        @Html.ValidationMessageFor(model => model.unEvenement.Duree, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unEvenement.DateEvenement, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unEvenement.DateEvenement, new { htmlAttributes = new { @class = "form-control date-picker" } })
+        @Html.ValidationMessageFor(model => model.unEvenement.DateEvenement, "", new { @class = "text-danger" })
+    </div>
+</div>

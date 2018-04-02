@@ -1,0 +1,40 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormMaterielViewModels
+
+
+
+@using (Ajax.BeginForm("AjaxCreate", "Materiel", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divFormulaireMateriel", OnSuccess = "SuccessPostFormMateriel(data)" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="divFormulaireMateriel">
+            @Html.Partial("_FormContenuMateriel", Model)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script type="text/javascript">
+    //Fonction de success de la PopUpModal
+    function SuccessPostFormMateriel(data) {
+        if (data.indexOf("field-validation-error") > -1) return;
+
+        var options = {
+            materielId: 0
+            };
+
+        modalPopUpInstance.close(options);
+    }
+</script>
+

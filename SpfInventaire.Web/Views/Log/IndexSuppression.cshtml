@@ -1,0 +1,39 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model LogSuppressionViewModel
+
+@{
+    ViewBag.Title = "Suppression";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
+}
+
+<h2>Suppression des Logs</h2>
+
+<p>
+    Les logs antérieur à la date sélectionnée seront supprimés
+</p>
+
+@using (Html.BeginForm("DeleteMultiple", "Log", FormMethod.Post))
+            {
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateSuppression, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateSuppression, new { htmlAttributes = new { @class = "form-control date-picker" } })
+            @Html.ValidationMessageFor(model => model.DateSuppression, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Supprimer" class="btn btn-primary" onclick="return confirm('Supprimer les Logs？')" />
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryUi")
+}
+

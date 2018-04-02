@@ -1,0 +1,42 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormMaterielViewModels
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Matériel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @if (Model.isEdit)
+        {
+            @Html.HiddenFor(model => model.unMateriel.ID)
+            @Html.HiddenFor(model => model.unMateriel.DateCreation)
+            @Html.HiddenFor(model => model.unMateriel.DateModification)
+
+        }
+
+        @Html.Partial("_FormContenuMateriel", Model)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Si id supérieur à 0, alors on est en mode Edition -->
+                @if (Model.isEdit)
+                {
+                    <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input type="submit" value="Créer" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+
+
+    </div>
+}
+

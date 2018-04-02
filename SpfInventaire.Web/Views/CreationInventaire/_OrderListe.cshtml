@@ -1,0 +1,78 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model ListOrderCreationInventaireViewModels
+
+
+<ul id="sortableList" class="list-group">
+    @foreach (var item in Model.ListOrder)
+    {
+        <li class="list-group-item list-group-item-association" data-id="@item.Id" data-odre="@item.Ordre">
+            <span class="glyphicon glyphicon-resize-vertical"></span>
+            @item.Text
+        </li>
+    }
+</ul>
+
+<input id="btEnregistrementOrdre" class="btn btn-primary" type="submit" value="Enregistrer" />
+
+<script>
+    $(document).ready(function () {
+
+        $("#sortableList").sortable();
+        $("#sortableList").disableSelection();
+
+        //Récuparation de la liste initial pour comparaison
+        var initialList = [];
+        $('#sortableList li').each(function () {
+            var id = $(this).data('id');
+            var ordre = $(this).data('odre');
+
+            initialList.push({ id: id, ordre: ordre });
+        });
+
+        //Clic sur le bouton enregistrer
+        $('#btEnregistrementOrdre').click(function (e) {
+            var resultList = {
+                ListOrder: [],
+                entity: "@Model.entity"
+            };
+
+            //Récupération de la nouvelle liste
+            $('#sortableList li').each(function () {
+                var _this = this;
+                _this.id = $(this).data('id');
+                _this.ordre = $(this).index();
+
+                var i;
+                for (i = 0; i < initialList.length; ++i) {
+
+                    if (initialList[i].id == _this.id) {
+                        if (initialList[i].ordre != _this.ordre) {
+                            resultList.ListOrder.push({ Id: _this.id, Text: '', Ordre: _this.ordre });
+                        } else if (initialList[i].ordre == '' && _this.ordre == 0) {
+                            resultList.ListOrder.push({ Id: _this.id, Text: '', Ordre: _this.ordre });
+                        }
+                    }
+                }
+            });
+
+            //Envoi de la liste à modifier
+            $.ajax({
+                url: "/CreationInventaire/ChangeSortList",
+                data: {
+                    listToUpdate: resultList
+                },
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    var options = {};
+                    modalPopUpInstance.close(options);
+                },
+                error: function (reponse) {
+                    alert("erreur : " + reponse);
+                }
+            });
+
+        });
+    });
+
+</script>

@@ -1,0 +1,30 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormPleinEnginViewModel
+
+@{
+    ViewBag.Title = "EditPlein";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modification</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Plein d'Essence</h4>
+        <hr />
+            @Html.Partial("_FormPlein", Model)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Modifier" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Liste des Engins", "Index")
+</div>

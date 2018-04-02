@@ -1,0 +1,92 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormSortieStockViewModel
+
+@Html.HiddenFor(model => model.idMaterielParametre)
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Matériel utilisé</div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.Label("Inventaires", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("inventaireID", Model.sortieStock.listInventaire, htmlAttributes: new { @id = "ddlInventaireSortie", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Emplacement", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("blocInventaireID", Model.sortieStock.listBlocInventaire, htmlAttributes: new { @id = "ddlBlocInventaireSortie", @class = "form-control" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Matériel", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("materielID", Model.sortieStock.listMateriel, htmlAttributes: new { @id = "ddlMaterielSortie", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Lot", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.sortieStock.uneSortieStock.UsedStockMaterielID, Model.sortieStock.listStock, htmlAttributes: new { @id = "ddlStockSortie", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sortieStock.uneSortieStock.UsedStockMaterielID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sortieStock.uneSortieStock.Raison, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EnumDropDownListFor(model => model.sortieStock.uneSortieStock.Raison, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sortieStock.uneSortieStock.Raison, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sortieStock.uneSortieStock.Quantite, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.sortieStock.uneSortieStock.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sortieStock.uneSortieStock.Quantite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">Pris dans la réserve</div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.Label("Inventaires", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("inventaireID", Model.sourceStock.listInventaire, htmlAttributes: new { @id = "ddlInventaireSource", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Emplacement", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("blocInventaireID", Model.sourceStock.listBlocInventaire, htmlAttributes: new { @id = "ddlBlocInventaireSource", @class = "form-control" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Matériel", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownList("materielID", Model.sourceStock.listMateriel, htmlAttributes: new { @id = "ddlMaterielSource", @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Lot", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.sortieStock.uneSortieStock.IdSourceStock, Model.sourceStock.listStock, htmlAttributes: new { @id = "ddlStockSource", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sortieStock.uneSortieStock.IdSourceStock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>

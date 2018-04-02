@@ -1,0 +1,15 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormMaterielViewModels
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Création</h2>
+
+@Html.Partial("_FormMateriel", Model)
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

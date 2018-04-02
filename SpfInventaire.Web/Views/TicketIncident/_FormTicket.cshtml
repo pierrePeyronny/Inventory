@@ -1,0 +1,42 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTicketIncidentViewModels
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Incident</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @if (Model.isEdit)
+        {
+            @Html.HiddenFor(model => model.unTicket.ID)
+            @Html.HiddenFor(model => model.unTicket.DateCreation)
+            @Html.HiddenFor(model => model.unTicket.DateModification)
+
+        }
+
+        @Html.Partial("_FormContenuTicket", Model)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <!-- Si id supérieur à 0, alors on est en mode Edition -->
+                @if (Model.isEdit)
+                {
+                    <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input type="submit" value="Créer" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+
+
+    </div>
+}
+

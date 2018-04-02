@@ -1,0 +1,86 @@
+﻿@model SpfInventaire.Core.DAL.Models.BlocInventaire
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section styles{
+    @Styles.Render("~/Content/datatables.min.css")
+}
+
+<h2>Bloc Inventaire</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>@Html.DisplayFor(model => model.Nom)</span>
+        </div>
+        <dl class="dl-horizontal">
+
+            <dt>
+                Inventaire
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Inventaire.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rank)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Rank)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+        </dl>
+
+    </div>
+</div>
+
+<p class="divActionDetails">
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+
+    @if (ViewBag.isFromInventaire != null && ViewBag.isFromInventaire == true)
+    {
+        @Html.ActionLink("Retour à l'inventaire", "Details", "Inventaire", new { id = Model.InventaireID }, null)
+        <span> | </span>
+    }
+
+    @Html.ActionLink("Liste des Blocs Inventaires", "Index")
+</p>
+
+@Html.Partial("~/Views/Materiel/_Index.cshtml", Model.Materiels)
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/datatable")
+}

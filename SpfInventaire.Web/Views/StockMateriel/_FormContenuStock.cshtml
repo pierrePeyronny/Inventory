@@ -1,0 +1,57 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model StockMaterielFormViewModel
+
+@if (!Model.isEdit)
+{
+    <div class="form-group">
+        @Html.Label("Inventaire", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.DropDownList("Inventaire", Model.listInventaire, htmlAttributes: new { @id = "ddlInventaire", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Emplacement", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.DropDownList("BlocInventaire", Model.listBlocInventaire, htmlAttributes: new { @id = "ddlBlocInventaire", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.unStock.MaterielID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(model => model.unStock.MaterielID, Model.listMateriel, htmlAttributes: new { @id = "ddlMateriel", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.unStock.MaterielID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}
+else
+{
+    @Html.HiddenFor(model => model.unStock.MaterielID)
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unStock.Quantite, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unStock.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unStock.Quantite, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unStock.DatePeremption, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unStock.DatePeremption, new { htmlAttributes = new { @class = "form-control date-picker" } })
+        @Html.ValidationMessageFor(model => model.unStock.DatePeremption, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unStock.Supprime, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="checkbox">
+            @Html.EditorFor(model => model.unStock.Supprime)
+            @Html.ValidationMessageFor(model => model.unStock.Supprime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>

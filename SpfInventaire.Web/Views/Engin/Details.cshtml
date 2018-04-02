@@ -1,0 +1,74 @@
+﻿@model SpfInventaire.Core.DAL.Models.Engin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>@Html.DisplayFor(model => model.Nom)</span>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Immatriculation)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Immatriculation)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CodeConf)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CodeConf)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CodeChauff)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CodeChauff)
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+
+        </dl>
+    </div>
+</div>
+    <p>
+        <div class="form-actions no-color">
+            @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Liste des Engins", "Index")
+        </div>
+    </p>

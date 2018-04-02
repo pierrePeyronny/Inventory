@@ -1,0 +1,22 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormMaterielViewModels
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Modification</h2>
+
+@Html.Partial("_FormMateriel", Model)
+
+<div>
+    @if (ViewBag.isFromBlocInventaire != null && ViewBag.isFromBlocInventaire == true)
+    {
+        @Html.ActionLink("Retour", "Details", new { id = Model.unMateriel.ID, isFromBlocInventaire = true })
+    }
+    else
+    {
+        @Html.ActionLink("Liste du Matériel", "Index")
+    }
+</div>

@@ -1,0 +1,24 @@
+﻿@model SpfInventaire.Core.DAL.Models.TicketIncident
+
+@switch (Model.Type)
+{
+    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_TYPE.Casser:
+        <span>Détérioré</span>
+        break;
+
+    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_TYPE.Dysfonctionnement:
+        <span>Ne fonctionne pas</span>
+        break;
+
+    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_TYPE.Manquant:
+        <span>N'est pas présent</span>
+        break;
+
+    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_TYPE.Peremption:
+        <span>Date de péremption</span>
+        break;
+
+    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_TYPE.PressionBouteille:
+        <span>Pression bouteille</span>
+        break;
+}

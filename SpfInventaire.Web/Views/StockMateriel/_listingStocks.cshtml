@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SpfInventaire.Core.DAL.Models.StockMateriel>
+
+<table class="table table-striped table-bordered" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                Inventaire
+            </th>
+            <th>
+                Emplacement
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePeremption)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materiel.BlocInventaire.Inventaire.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materiel.BlocInventaire.Nom)
+                </td>
+                <td class="tdColumnCenter">
+                    @Html.DisplayFor(modelItem => item.Quantite)
+                </td>
+                @if ((Convert.ToDateTime(item.DatePeremption) - DateTime.Now).TotalDays < 30)
+                {
+                    <td style="color: red;">
+                        @Html.DisplayFor(modelItem => item.DatePeremption)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatePeremption)
+                    </td>
+                }
+
+            </tr>
+        }
+        <tr>
+            <td colspan="2" class="tdColumnRight">
+                <strong>
+                    Total:
+                </strong>
+            </td>
+            <td class="tdColumnCenter">
+                <strong>@Model.Sum(i => i.Quantite)</strong>           
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

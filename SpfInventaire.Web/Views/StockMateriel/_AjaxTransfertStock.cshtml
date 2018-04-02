@@ -1,0 +1,38 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTransfertStockMaterielViewModel
+
+@using (Ajax.BeginForm("AjaxTransfert", "StockMateriel", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divFormulaire", OnSuccess = "SuccessPostForm(data)" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })       
+
+        <div id="divFormulaire">
+            @Html.Partial("_FormContenuTransfertStock", Model)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Transfèrer" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script type="text/javascript">
+    //Fonction de success de la PopUpModal
+    function SuccessPostForm(data) {
+        if (data.indexOf("field-validation-error") > -1) return;
+
+        var options = {
+            materielId: 0
+            };
+
+        modalPopUpInstance.close(options);
+    }
+</script>
+

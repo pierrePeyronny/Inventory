@@ -1,0 +1,36 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model ListingStockMaterielViewModel
+
+@{
+    ViewBag.Title = "IndexListingStocks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listing des Stocks</h2>
+
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.listMateriel, "Matériel", htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownList("listMateriel", Model.listMateriel, htmlAttributes: new { @id = "ddlMateriel", @class = "form-control" })
+            <span id="loaderMateriel" class="glyphicon glyphicon-refresh glyphicon-refresh-animate loaderListeAssociation" style="display: none;"></span>
+        </div>
+    </div>
+</div>
+
+
+<div id="divResultStocks" class="row">
+
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/Scripts/ViewScripts/BoutonInventaire.js")
+    @Scripts.Render("~/Scripts/ViewScripts/ListingStocks.js")
+    <script>
+        $(document).ready(function () {
+            ListingStocks = new ListingStocks();
+        });
+    </script>
+}

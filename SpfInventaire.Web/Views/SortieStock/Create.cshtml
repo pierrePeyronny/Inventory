@@ -1,0 +1,78 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormSortieStockViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Matériel Utilisé</h2>
+
+@if (ViewBag.Success != null)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">Réussi</div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (ViewBag.isChefGarde)
+        {
+            <p>
+                @Html.ActionLink("Historique Matériel utilisé", "Index")
+            </p>
+        }
+
+        @Html.Partial("_FormContenuSortieStock", Model)
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/Scripts/ViewScripts/BoutonInventaire.js")
+    @Scripts.Render("~/Scripts/ViewScripts/GestionListSelectionMateriel.js")
+    <script>
+        $(document).ready(function () {
+
+            optionsSortie = {
+                ListInventaireID: 'ddlInventaireSortie',
+                listBlocsID: 'ddlBlocInventaireSortie',
+                listMaterielID: 'ddlMaterielSortie',
+                listStockID: 'ddlStockSortie'
+            }
+
+            SelectionMaterielSortie = new SelectionMateriel(optionsSortie);
+
+
+            optionsSource = {
+                ListInventaireID: 'ddlInventaireSource',
+                listBlocsID: 'ddlBlocInventaireSource',
+                listMaterielID: 'ddlMaterielSource',
+                listStockID: 'ddlStockSource'
+            }
+
+            SelectionMaterielSource = new SelectionMateriel(optionsSource);
+
+        });
+    </script>
+}

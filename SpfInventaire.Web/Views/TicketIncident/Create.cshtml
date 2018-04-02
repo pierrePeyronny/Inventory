@@ -1,0 +1,27 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTicketIncidentViewModels
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Création</h2>
+
+@Html.Partial("_FormTicket", Model)
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/bundles/TicketForm")
+
+    <script>
+        $(document).ready(function () {
+            TicketForm = new TicketForm();
+        });
+    </script>
+}

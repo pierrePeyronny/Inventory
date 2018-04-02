@@ -1,0 +1,27 @@
+﻿@model SpfInventaire.Core.DAL.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Mon Compte</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Informations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mot de passe:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Changer Mot de passe", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Créer Mot de passe", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+</div>

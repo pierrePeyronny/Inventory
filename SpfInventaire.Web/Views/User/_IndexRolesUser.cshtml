@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework
+@model IEnumerable<IdentityRole>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Role
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="tdColumnRight">
+                    <div class="divIconesActionsTDB">
+                        <a class="deleteButtonTDB" data-id="@item.Id" href="#" alt="Supprimer" data-toggle="tooltip" title="Supprimer">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

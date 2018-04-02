@@ -1,0 +1,50 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model StockMaterielFormViewModel
+
+
+@using (Ajax.BeginForm("AjaxEdit", "StockMateriel", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divFormulaire", OnSuccess = "SuccessPostForm(data)" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.unStock.ID)
+        @Html.HiddenFor(model => model.unStock.TypeMaterielID)
+        @Html.HiddenFor(model => model.unStock.DateCreation)
+        @Html.HiddenFor(model => model.unStock.DateModification)
+
+        <div id="divFormulaire">
+            @Html.Partial("_FormContenuStock", Model)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script type="text/javascript">
+    $('.date-picker').datepicker({
+        dateFormat: "yy/mm/dd"
+    });
+
+    //Fonction de success de la PopUpModal
+    function SuccessPostForm(data) {
+        if (data.indexOf("field-validation-error") > -1) return;
+
+        var options = {
+            materielId: 0
+            };
+
+        modalPopUpInstance.close(options);
+    }
+</script>
+
+
+

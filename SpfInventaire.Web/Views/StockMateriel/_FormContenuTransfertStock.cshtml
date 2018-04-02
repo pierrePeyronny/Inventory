@@ -1,0 +1,34 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTransfertStockMaterielViewModel
+
+@Html.HiddenFor(model => model.stockSourceId)
+
+<div class="form-group">
+    @Html.Label("Inventaire", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-9">
+        @Html.DropDownList("Inventaire", Model.FormStock.listInventaire, htmlAttributes: new { @id = "ddlInventaire", @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label("Emplacement", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-9">
+        @Html.DropDownList("BlocInventaire", Model.FormStock.listBlocInventaire, htmlAttributes: new { @id = "ddlBlocInventaire", @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FormStock.unStock.MaterielID, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.FormStock.unStock.MaterielID, Model.FormStock.listMateriel, htmlAttributes: new { @id = "ddlMateriel", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FormStock.unStock.MaterielID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FormStock.unStock.Quantite, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FormStock.unStock.Quantite, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FormStock.unStock.Quantite, "", new { @class = "text-danger" })
+    </div>
+</div>

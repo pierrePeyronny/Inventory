@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpfInventaire.Web", "SpfInventaire.Web\SpfInventaire.Web.csproj", "{A8A1F5EF-56CD-46A3-AFB2-4C2505B9E88E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpfInventaire.Core", "SpfInventaire.Core\SpfInventaire.Core.csproj", "{663B83F3-FD5C-4B2E-8FEE-8A2026ADA60D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8A1F5EF-56CD-46A3-AFB2-4C2505B9E88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A1F5EF-56CD-46A3-AFB2-4C2505B9E88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A1F5EF-56CD-46A3-AFB2-4C2505B9E88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A1F5EF-56CD-46A3-AFB2-4C2505B9E88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663B83F3-FD5C-4B2E-8FEE-8A2026ADA60D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663B83F3-FD5C-4B2E-8FEE-8A2026ADA60D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663B83F3-FD5C-4B2E-8FEE-8A2026ADA60D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663B83F3-FD5C-4B2E-8FEE-8A2026ADA60D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

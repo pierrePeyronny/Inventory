@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SpfInventaire.Core.DAL.Models.Materiel>
+
+
+@foreach (var materiel in Model)
+{
+    if (materiel.Active)
+    {
+        <div class="panel panel-primary">
+            <div class="panel-heading">@materiel.BlocInventaire.Inventaire.Nom <br /> @materiel.BlocInventaire.Nom</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        @materiel.TypeMateriel.Nom:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="transfert" data-id="@(materiel.ID)">Sélectionner</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+}

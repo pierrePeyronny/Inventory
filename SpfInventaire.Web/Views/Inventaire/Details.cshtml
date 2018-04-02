@@ -1,0 +1,76 @@
+﻿@model SpfInventaire.Core.DAL.Models.Inventaire
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section styles{
+    @Styles.Render("~/Content/datatables.min.css")
+}
+
+<h2>Inventaire</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>@Html.DisplayFor(model => model.Nom)</span>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Rank)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rank)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsInventaireStock)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsInventaireStock)
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+
+        </dl>
+    </div>
+</div>
+    <p class="divActionDetails">
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Liste des Inventaires", "Index")
+    </p>
+
+    @Html.Partial("~/Views/BlocInventaire/_Index.cshtml", Model.BlocInventaires)
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/datatable")
+}

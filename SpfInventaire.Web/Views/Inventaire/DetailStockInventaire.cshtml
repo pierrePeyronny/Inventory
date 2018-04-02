@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SpfInventaire.Core.DAL.Models.Materiel>
+
+@{
+    ViewBag.Title = "IndexStock Inventaire";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.First().BlocInventaire.Inventaire.Nom</h2>
+
+<p class="divActionDetails">
+    @Html.ActionLink("Liste des Inventaires", "Index")
+</p>
+
+
+
+<table class="table table-responsive">
+<tr>
+    <th>Matériel</th>
+    <th>Quantité Théorique</th>
+    <th>Quantité Réel</th>
+    <th>Péremption la plus proche</th>
+</tr>
+
+@foreach (var materiel in Model)
+{
+    if (materiel.Active)
+    {
+        <tr>
+            <td>
+                @if (materiel.TypeMateriel != null)
+                {
+                    @materiel.TypeMateriel.Nom
+                }
+                else
+                {
+                    @materiel.Nom
+                }
+            </td>
+            <td>
+                @materiel.Quantite
+            </td>
+            <td>
+                @materiel.StockMateriels.Where(w => w.Supprime == false && w.Quantite > 0).Sum(q => q.Quantite)
+            </td>
+
+            @{
+                var materielPeremption = materiel.StockMateriels.Where(w => w.Supprime == false && w.Quantite > 0).OrderBy(o => o.DatePeremption).FirstOrDefault();
+            }
+
+            @if (materielPeremption != null)
+            {
+                if (materielPeremption.DatePeremption != null)
+                {
+                    if ((Convert.ToDateTime(materielPeremption.DatePeremption) - DateTime.Now).TotalDays < 30)
+                    {
+                        <td style="color: red;">
+                            @materielPeremption.DatePeremption.Value.ToString("dd/MM/yyyy")
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @materielPeremption.DatePeremption.Value.ToString("dd/MM/yyyy")
+                        </td>
+                    }
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+    }
+}
+
+</table>

@@ -1,0 +1,51 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model NewFormSortieStockViewModel
+
+@using (Ajax.BeginForm("AjaxCreate", "SortieStock", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divFormulaire", OnComplete= "CompletePostFormSortieStock()",  OnSuccess = "SuccessPostFormSortieStock(data)" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="divFormulaire">
+            @Html.Partial("_FormContenuAjaxSortieStock", Model)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btCreateSortieStock" type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+
+    $('#btCreateSortieStock').click(function (e) {
+        $(this).hide();
+    });
+
+
+    function CompletePostFormSortieStock() {
+        $('#btCreateSortieStock').show();
+    }
+
+
+    //Fonction de success de la PopUpModal
+    function SuccessPostFormSortieStock(data) {
+        if (data.indexOf("field-validation-error") > -1) {
+            $('#btCreateSortieStock').show();
+            return;
+
+        } else {
+            var options = {
+            };
+
+            modalPopUpInstance.close(options);
+        }
+            
+    }
+</script>

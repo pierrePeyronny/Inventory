@@ -1,0 +1,39 @@
+﻿@model SpfInventaire.Core.DAL.Models.TypeMateriel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Type Materiel</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>Type: @Html.DisplayFor(model => model.Nom)</span>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Domaine)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Domaine)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    @using (Html.BeginForm("Delete", "TypeMateriel", new { id = Model.ID }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary" onclick="return confirm('Supprimer le Type Matériel？')" /> |
+            @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Liste des Types", "Index")
+        </div>
+    }
+
+</p>

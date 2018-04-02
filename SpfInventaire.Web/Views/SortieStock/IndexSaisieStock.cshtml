@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "IndexSaisieStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Utilisation de matériel</h2>
+
+    <div class="form-horizontal">
+        <div class="form-group">           
+            <div class="col-xs-10">
+                <input type="text" name="champRecherche" id="champRecherche" class="form-control" />
+                <span id="loaderRecherche" class="glyphicon glyphicon-refresh glyphicon-refresh-animate loaderListeAssociation" style="display: none;"></span>
+            </div>
+            <div class="col-xs-2">
+
+                <button id="btRecherche" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+
+        <div id="divAffichageStock">
+
+        </div>
+    </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/Scripts/ViewScripts/BoutonInventaire.js")
+    @Scripts.Render("~/Scripts/ViewScripts/SaisieStock.js")
+            
+
+    <script>
+        $(document).ready(function () {
+            SaisieStock = new SaisieStock();
+
+        });
+</script>
+}

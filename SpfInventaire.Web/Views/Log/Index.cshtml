@@ -1,0 +1,146 @@
+﻿@model IEnumerable<SpfInventaire.Core.DAL.Models.Log>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @Styles.Render("~/Content/datatables.min.css")
+}
+
+
+<h2>Liste des Logs</h2>
+
+<p class="actionLinksIndexPage">
+    @Html.ActionLink("Suppression des logs", "IndexSuppression")
+</p>
+<table id="tableauDatatable" class="table table-striped table-bordered" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeEvt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeObject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObject)
+            </th>
+            <th class="firstColumnOrder">
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Utilisateur)
+            </th>
+            <th class="noSortingColumn"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @switch (item.TypeEvt)
+                    {
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.Connexion:
+                            <span>Connexion</span>
+                            break;
+
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.Create:
+                            <span>Création</span>
+                            break;
+
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.Delete:
+                            <span>Suppression</span>
+                            break;
+
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.Edit:
+                            <span>Modification</span>
+                            break;
+
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.Erreur:
+                            <span>Erreur</span>
+                            break;
+
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_EVENT.PremiereConnexion:
+                            <span>Première Connexion</span>
+                            break;
+                    }   
+                </td>
+                <td>
+                    @switch (item.TypeObject)
+                    {
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.AssociationRoleToUser:
+                            <span>Association Role / Utilisateur</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.BlocInventaire:
+                            <span>Emplacement</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Inventaire:
+                            <span>Inventaire</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Materiel:
+                            <span>Matériel</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Role:
+                            <span>Role</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Ticket:
+                            <span>Ticket</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.User:
+                            <span>Utilisateur</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.ValidationInventaire:
+                            <span>Validation Inventaire</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Engin:
+                            <span>Engin</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Email:
+                            <span>Email</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.Evenement:
+                            <span>Evenement</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.PleinEssence:
+                            <span>Plein d'essence</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.SortieStockMateriel:
+                            <span>Sortie de Stock</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.StockMateriel:
+                            <span>Stock Matériel</span>
+                            break;
+                        case SpfInventaire.Core.DAL.Models.LOG_TYPE_OBJECT.TypeMateriel:
+                            <span>Type Matériel</span>
+                            break;
+                    }
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdObject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Utilisateur.Nom)
+                    @Html.DisplayFor(modelItem => item.Utilisateur.Prenom)
+                </td>
+                <td class="tdColumnRight">
+                    <div class="divIconesActionsTDB">
+                        <a class="detailButtonTDB" href="@Url.Action("Details",new { id = item.ID })" alt="Voir détail" data-toggle="tooltip" title="Voir détail">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/datatable")
+}

@@ -1,0 +1,41 @@
+﻿
+@using SpfInventaire.Core.DAL.ViewModels
+@model FormBlocInventaireViewModels
+
+
+
+@using (Ajax.BeginForm("AjaxCreate", "BlocInventaire", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divFormulaireBlocInventaire", OnSuccess = "SuccessPostFormBlocInventaire(data)" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="divFormulaireBlocInventaire">
+            @Html.Partial("_FormContenuBlocInventaire", Model)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script type="text/javascript">
+    //Fonction de success de la PopUpModal
+    function SuccessPostFormBlocInventaire(data) {
+        if (data.indexOf("field-validation-error") > -1) return;
+
+        var options = {
+            blocInventaireId: 0
+            };
+
+        modalPopUpInstance.close(options);
+    }
+</script>
+

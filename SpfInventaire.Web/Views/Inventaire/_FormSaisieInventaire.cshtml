@@ -1,0 +1,64 @@
+﻿@model SpfInventaire.Core.DAL.Models.Inventaire
+
+
+@{
+    var BlocOrdered = Model.BlocInventaires.OrderBy(x => x.Rank);
+}
+
+@foreach (var bloc in BlocOrdered)
+{
+    if(bloc.Active)
+    { 
+        <div class="panel panel-primary">
+            <div class="panel-heading">@bloc.Nom</div>
+            <div class="panel-body">
+                @{
+                    var MaterielOrdered = bloc.Materiels.OrderBy(m => m.Rank);
+                }
+                <ul class="list-group">
+                    @foreach (var materiel in bloc.Materiels)
+                    {
+                        if(materiel.Active)
+                        { 
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        @if (materiel.TypeMateriel != null)
+                                        {
+                                            <span>@materiel.Quantite @materiel.TypeMateriel.Nom </span>
+                                        }
+                                        else
+                                        {
+                                            <span>@materiel.Quantite @materiel.Nom </span>
+                                        }
+                                        
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <div class="presenceMateriel" role="group">
+                                            @if (materiel.Tickets.Any(w => w.Statut != SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_STATUT.Resolu))
+                                            {
+                                                <button type="button" class="btn btn-default detailTicket" data-id="@materiel.ID" title="Ticket déclaré">
+                                                    <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: red;"></span>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-danger signaler" data-id="@materiel.ID" title="Signaler un problème">
+                                                    <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                                                </button>
+                                            }
+                                            <button type="button" class="btn btn-info transfert" data-id="@materiel.ID" title="Matériel utilisé">
+                                                <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}

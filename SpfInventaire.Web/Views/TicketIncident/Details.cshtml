@@ -1,0 +1,140 @@
+﻿@model SpfInventaire.Core.DAL.Models.TicketIncident
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>Ticket numéro: @Html.DisplayFor(model => model.ID)</span>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Materiel.BlocInventaire.Inventaire)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Materiel.BlocInventaire.Inventaire.Nom)
+            </dd>
+
+            <dt>
+                Emplacement
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Materiel.BlocInventaire.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Materiel)
+            </dt>
+            <dd>
+                @if (Model.Materiel.Nom == null || Model.Materiel.Nom == "")
+                {
+                    @Html.DisplayFor(Model => Model.Materiel.TypeMateriel.Nom)
+                }
+                else
+                {
+                    @Html.DisplayFor(Model => Model.Materiel.Nom)
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd>
+                @Html.Partial("_AffichageType", Model)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Statut)
+            </dt>
+            <dd>
+                @switch (Model.Statut)
+                {
+                    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_STATUT.Nouveau:
+                        <span>Nouveau</span>
+                        break;
+
+                    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_STATUT.Lu:
+                        <span>Lu</span>
+                        break;
+
+                    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_STATUT.PrisEnCompte:
+                        <span>En Cours</span>
+                        break;
+
+                    case SpfInventaire.Core.DAL.Models.TICKET_INCIDENT_STATUT.Resolu:
+                        <span>Résolu</span>
+                        break;
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Message)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Message)
+            </dd>
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroFeb)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NumeroFeb)
+            </dd>  
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UtilisateurCreateur)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UtilisateurCreateur.Nom) 
+                @Html.DisplayFor(model => model.UtilisateurCreateur.Prenom)
+            </dd>
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<p>
+    @using (Html.BeginForm("Delete", "TicketIncident", new { id = Model.ID }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary"  onclick="return confirm('Supprimer le Ticket？')"/> |
+            @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Liste des Tickets", "Index")
+        </div>
+    }
+
+</p>
+

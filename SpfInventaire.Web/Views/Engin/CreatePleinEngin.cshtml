@@ -1,0 +1,49 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormPleinEnginViewModel
+
+@{
+    ViewBag.Title = "PleinEngin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Plein Essence</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="divTitreDetail">
+            <span>@Model.unPlein.Engin.Nom</span>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-info" role="alert">
+                    Code Conf: <strong>@Model.unPlein.Engin.CodeConf</strong>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="alert alert-success" role="alert">
+                    Code Chauff: <strong>@Model.unPlein.Engin.CodeChauff</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+                @Html.Partial("_FormPlein", Model)
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Plein Payé" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Liste des Engins", "Index")
+</div>

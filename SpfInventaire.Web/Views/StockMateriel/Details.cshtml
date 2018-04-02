@@ -1,0 +1,99 @@
+﻿@model SpfInventaire.Core.DAL.Models.StockMateriel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            <span>Stock numéro: @Html.DisplayFor(model => model.ID)</span>
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Materiel.BlocInventaire.Inventaire)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Materiel.BlocInventaire.Inventaire.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Materiel.BlocInventaire)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Materiel.BlocInventaire.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Materiel)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Materiel.TypeMateriel.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantite)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantite)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DatePeremption)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DatePeremption)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Supprime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Supprime)
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    @using (Html.BeginForm("Delete", "StockMateriel", new { id = Model.ID }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-primary" onclick="return confirm('Supprimer le Stock？')" /> |
+            @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Liste des Stocks", "Index")
+        </div>
+    }
+
+</p>
+

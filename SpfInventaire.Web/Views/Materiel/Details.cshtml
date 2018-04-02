@@ -1,0 +1,101 @@
+﻿@model SpfInventaire.Core.DAL.Models.Materiel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Materiel</h2>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="divTitreDetail">
+            @if (Model.TypeMateriel != null)
+            {
+                <span>@Html.DisplayFor(model => model.TypeMateriel.Nom)</span>
+            }
+            else
+            {
+                <span>@Html.DisplayFor(model => model.Nom)</span>
+            }         
+        </div>
+        <dl class="dl-horizontal">
+            <dt>
+                Bloc Inventaire
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BlocInventaire.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantite)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Quantite)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tester)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tester)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rank)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Rank)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateCreation)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateCreation)
+                </small>
+            </dd>
+
+            <dt>
+                <small>
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </small>
+            </dt>
+            <dd>
+                <small>
+                    @Html.DisplayFor(model => model.DateModification)
+                </small>
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+<p class="divActionDetails">
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
+
+    @if (ViewBag.isFromBlocInventaire != null && ViewBag.isFromBlocInventaire == true)
+    {
+        @Html.ActionLink("Retour au Bloc Inventaire", "Details", "BlocInventaire", new { id = Model.BlocInventaireID }, null)
+        <span> | </span>
+    }
+
+    @Html.ActionLink("Liste du Matériel", "Index")
+</p>

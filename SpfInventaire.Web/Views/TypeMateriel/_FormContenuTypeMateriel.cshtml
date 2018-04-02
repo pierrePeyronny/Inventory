@@ -1,0 +1,20 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormTypeMaterielViewModels
+
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTypeMateriel.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unTypeMateriel.Nom, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unTypeMateriel.Nom, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unTypeMateriel.Domaine, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EnumDropDownListFor(model => model.unTypeMateriel.Domaine, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unTypeMateriel.Domaine, "", new { @class = "text-danger" })
+    </div>
+</div>

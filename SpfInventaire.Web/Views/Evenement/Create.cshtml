@@ -1,0 +1,25 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormEvenementViewModels
+
+@{
+    ViewBag.Title = "Création";
+}
+
+@section styles{
+    @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
+}
+
+<h2>Création</h2>
+
+<div>
+    @Html.Partial("_FormEvenement", Model)
+</div>
+
+
+<div>
+    @Html.ActionLink("Liste des Evénements", "Index")
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryUi")
+}

@@ -1,0 +1,308 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+footer
+{
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Loader */
+
+#loaderGeneral {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+#loaderGeneral:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+#loaderGeneral:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+#loaderGeneral:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: #428bca 1.5em 0 0 0, #428bca 1.1em 1.1em 0 0, #428bca 0 1.5em 0 0, #428bca; -1.1em 1.1em 0 0, #428bca -1.5em 0 0 0, #428bca -1.1em -1.1em 0 0, #428bca 0 -1.5em 0 0, #428bca 1.1em -1.1em 0 0;
+  box-shadow: #428bca 1.5em 0 0 0, #428bca 1.1em 1.1em 0 0, #428bca 0 1.5em 0 0, #428bca -1.1em 1.1em 0 0, #428bca -1.5em 0 0 0, #428bca -1.1em -1.1em 0 0, #428bca 0 -1.5em 0 0, #428bca 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+/*****************************
+    CSS des TABLEAUX (datatable)
+    ******************************/
+.tdColumnCenter
+{
+    text-align: center;
+}
+
+.tdColumnRight
+{
+    text-align: right;
+}
+
+.actionLinksIndexPage
+{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.divIconesActionsTDB
+{
+    width: 80px;
+    margin: auto;
+}
+
+.divIconesActionsTDB a
+{
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.divIconesActionsTDB a.detailButtonTDB
+{
+    color: grey;
+}
+
+.divIconesActionsTDB a.deleteButtonTDB
+{
+    color: red;
+}
+
+.deleteButton{
+    color:red;
+}
+
+.TransfertButtonTDB{
+    color: #009933;
+}
+
+.groupListingIndex
+{
+    background-color: #428bca !important;
+}
+
+
+/*****************************
+    CSS des Pages Détails
+    ******************************/
+.divTitreDetail
+{
+    margin-left: 60px;
+}
+
+.divTitreDetail span
+{
+    font-size: large;
+    color: #428bca;
+}
+
+.divActionDetails
+{
+    margin-bottom: 50px;
+}
+
+
+/*********************************
+    CSS Page Association PFSD
+**********************************/
+.formAssociationPFSD .form-group
+{
+    margin-bottom: 30px;
+}
+
+.control-PFSD
+{
+    max-width: 650px;
+}
+
+.buttonAddListeAssociation
+{
+    color: #5cb85c;
+}
+
+.buttonEditListeAssociation
+{
+    color: #428bca;
+}
+
+
+.glyphicon-refresh-animate {
+    -animation: spin .9s infinite linear;
+    -webkit-animation: spin2 .9s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.loaderListeAssociation
+{
+    margin-left: 10px;
+    vertical-align: middle;
+    color: #428bca;
+}
+
+.loaderValidationInventaire
+{
+    margin-left: 10px;
+    vertical-align: middle;
+    color: #468847;
+}
+
+.list-group-item-association
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+/*********************************
+    CSS Page Saisie Inventaire
+**********************************/
+.presenceMateriel
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.list-group-item .presenceMateriel
+{
+    float: right;
+}
+

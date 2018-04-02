@@ -1,0 +1,109 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model DetailUserViewModels
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div>
+        <h4>Utilisateur</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.Nom)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.Prenom)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.Prenom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.Surnom)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.Surnom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.EmailConfirmed)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.EmailConfirmed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.unUser.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.unUser.UserName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.unUser.Id }) |
+        @Html.ActionLink("Liste des Utilisateurs", "Index")
+    </p>
+
+</div>
+
+<div class="row">
+
+    <h3>Roles</h3>
+
+
+    <div class="form-group">
+        @Html.Label("Roles", htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-3">
+            <div class="input-group">
+                @Html.DropDownList("Role", Model.listAllRoles, htmlAttributes: new { @id = "listRoles", @class = "form-control" })
+                <div class="input-group-btn">
+                    <button id="linkAddRole" class="btn btn-default" type="button" title="Ajouter un Role">
+                        <span class="glyphicon glyphicon-plus buttonAddListeAssociation" aria-hidden="true"></span>
+                    </button>
+                    <span id="loaderRoles" class="glyphicon glyphicon-refresh glyphicon-refresh-animate loaderListeAssociation" style="display: none;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div id="divRolesUser">
+        @Html.Partial("_IndexRolesUser", Model.listRolesUser)
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/AjaxService")
+    @Scripts.Render("~/Scripts/ViewScripts/BoutonInventaire.js")
+    @Scripts.Render("~/Scripts/ViewScripts/DetailUser.js")
+    <script>
+
+        $(document).ready(function () {
+
+            var options = {
+                userId: '@Model.unUser.Id'
+            };
+
+            DetailUser = new DetailUser(options);
+        });
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿@model SpfInventaire.Core.DAL.Models.Inventaire
+
+@{
+    ViewBag.Title = "Detail Inventaire Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail Stock Inventaire</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Matériel
+        </th>
+        <th>
+            Stock Théorique
+        </th>
+        <th>
+            Stock Réél
+        </th>
+        <th>
+            A Commander
+        </th>
+    </tr>
+
+
+@foreach (var bloc in Model.BlocInventaires) {
+
+    foreach (var materiel in bloc.Materiels)
+    {
+        int CountTheorique = 0;
+        int CountReel = 0;
+        <tr>
+            <td>
+                @materiel.Nom
+            </td>
+            <td>
+                @{CountTheorique = materiel.Quantite;}
+                @CountTheorique;
+            </td>
+            <td>
+                @{CountReel = materiel.StockMateriels.Select(f => f.Quantite).Count();}
+                @CountReel
+            </td>
+            <td>
+                @{}
+            </td>
+        </tr>
+    }
+
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Liste des Inventaires", "Index")
+</div>

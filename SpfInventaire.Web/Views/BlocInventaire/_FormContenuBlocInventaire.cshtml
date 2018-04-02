@@ -1,0 +1,39 @@
+﻿@using SpfInventaire.Core.DAL.ViewModels
+@model FormBlocInventaireViewModels
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unBlocInventaire.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unBlocInventaire.Nom, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unBlocInventaire.Nom, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unBlocInventaire.InventaireID, "Inventaire", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.unBlocInventaire.InventaireID, Model.listInventaire, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.unBlocInventaire.InventaireID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unBlocInventaire.Rank, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.unBlocInventaire.Rank, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.unBlocInventaire.Rank, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.unBlocInventaire.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="checkbox">
+            @Html.EditorFor(model => model.unBlocInventaire.Active)
+            @Html.ValidationMessageFor(model => model.unBlocInventaire.Active, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+
+
+
